@@ -59,19 +59,19 @@
         .content-section {
             position: relative;
             z-index: 10;
-            background: rgba(0, 0, 0, 0.92);
-            backdrop-filter: blur(15px);
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
             padding: 80px 20px;
             margin-top: 70vh;
             box-shadow: 0 -50px 100px rgba(0,0,0,1);
-            border-top: 1px solid rgba(255,255,255,0.05);
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2.5rem;
         }
 
         #admin-modal {
@@ -79,10 +79,10 @@
             position: fixed;
             inset: 0;
             z-index: 100;
-            background: rgba(0,0,0,0.95);
+            background: rgba(0,0,0,0.98);
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(30px);
         }
 
         .loading-overlay {
@@ -96,18 +96,31 @@
             justify-content: center;
             transition: opacity 0.5s ease-out;
         }
+
+        input, textarea {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            transition: all 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--flag-gold);
+            background: rgba(255,255,255,0.1);
+            outline: none;
+        }
     </style>
 </head>
 <body>
 
     <div id="loading" class="loading-overlay">
         <div class="national-font text-gold animate-pulse tracking-widest text-xl">KLIETENLOHNDE</div>
-        <div id="status-text" class="text-[10px] text-gray-600 mt-4 uppercase tracking-widest">Waking Servers...</div>
+        <div id="status-text" class="text-[10px] text-gray-500 mt-6 uppercase tracking-[0.3em]">Connecting to Royal Database...</div>
     </div>
 
     <!-- Admin Access Button -->
-    <button onclick="openAdmin()" class="fixed top-6 right-6 z-[110] w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center transition-all">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    <button onclick="openAdmin()" class="fixed top-6 right-6 z-[110] w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
     </button>
 
     <!-- Flag Background -->
@@ -119,9 +132,10 @@
 
     <!-- Hero -->
     <section class="h-[70vh] flex items-center justify-center text-center px-4">
-        <div>
-            <h1 class="text-4xl md:text-6xl font-bold tracking-[0.2em] uppercase mb-4 drop-shadow-2xl">Klietenlohnde</h1>
-            <p class="text-sm tracking-[0.4em] font-light opacity-60 uppercase">Ohvicial Siete</p>
+        <div class="space-y-4">
+            <!-- Adjusted Title Size here -->
+            <h1 class="text-3xl md:text-5xl font-bold tracking-[0.3em] uppercase drop-shadow-2xl">Klietenlohnde</h1>
+            <p class="text-[10px] tracking-[0.6em] font-light opacity-50 uppercase">The Sovereign People's Republic</p>
         </div>
     </section>
 
@@ -129,34 +143,50 @@
     <div class="content-section">
         <div class="max-w-4xl mx-auto space-y-24">
             
-            <div class="text-center space-y-8">
-                <p class="text-xl md:text-2xl italic font-light leading-relaxed text-gray-300">
+            <div class="text-center space-y-10">
+                <p class="text-xl md:text-2xl italic font-light leading-relaxed text-gray-200">
                     "Dis lohnde biear biemahktard zei en man wir willan foer elkander toe sie vellken, toe hapfan en plas toe sie diede."
                 </p>
-                <p class="text-base text-gray-500 max-w-2xl mx-auto border-t border-white/5 pt-8">
+                <div class="w-16 h-0.5 bg-gold mx-auto opacity-30"></div>
+                <p class="text-sm text-gray-500 max-w-2xl mx-auto tracking-wide leading-relaxed">
                     This country was originally formed by a man who wanted for everyone to have a place to call home and for people to be happy, and for people to be themselves.
                 </p>
             </div>
 
-            <div class="glass-card text-center py-12">
-                <h3 class="national-font text-gray-500 uppercase tracking-widest text-xs mb-4">Recognized Citizens</h3>
-                <div class="text-7xl font-bold mb-10">
+            <div class="glass-card text-center">
+                <h3 class="national-font text-gray-500 uppercase tracking-widest text-[9px] mb-6">Population Census</h3>
+                <div class="text-7xl md:text-8xl font-bold mb-10 text-white tracking-tighter">
                     <span id="citizen-count">0</span>
                 </div>
-                <div id="recent-citizens" class="flex flex-wrap gap-3 justify-center"></div>
+                <div id="recent-citizens" class="flex flex-wrap gap-3 justify-center min-h-[40px]">
+                    <span class="text-gray-600 text-[10px] animate-pulse italic">Synchronizing registry...</span>
+                </div>
             </div>
 
             <div class="glass-card max-w-xl mx-auto">
-                <h2 class="text-xl text-center mb-8 national-font tracking-widest">Citizenship Application</h2>
-                <form id="citizenshipForm" class="space-y-5">
-                    <input name="fullname" type="text" required class="w-full bg-white/5 border border-white/10 p-4 rounded outline-none" placeholder="Full Name">
-                    <input name="email" type="email" required class="w-full bg-white/5 border border-white/10 p-4 rounded outline-none" placeholder="Email Address">
-                    <textarea name="intent" required class="w-full bg-white/5 border border-white/10 p-4 rounded h-32 outline-none" placeholder="Statement of Intent"></textarea>
-                    <button type="submit" id="submitBtn" class="w-full py-4 bg-white text-black font-bold rounded uppercase tracking-widest hover:invert transition-all">
-                        Apply for Citizenship
+                <h2 class="text-lg text-center mb-10 national-font tracking-[0.2em] uppercase">Citizenship Application</h2>
+                <form id="citizenshipForm" class="space-y-6">
+                    <div>
+                        <label class="text-[10px] uppercase tracking-widest text-gray-500 mb-2 block">Full Legal Name</label>
+                        <input name="fullname" type="text" required class="w-full p-4 rounded-lg" placeholder="e.g. John Doe">
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase tracking-widest text-gray-500 mb-2 block">Contact Email</label>
+                        <input name="email" type="email" required class="w-full p-4 rounded-lg" placeholder="email@address.com">
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase tracking-widest text-gray-500 mb-2 block">Statement of Intent</label>
+                        <textarea name="intent" required class="w-full p-4 rounded-lg h-32" placeholder="Why do you wish to join Klietenlohnde?"></textarea>
+                    </div>
+                    <button type="submit" id="submitBtn" class="w-full py-5 bg-white text-black font-black rounded-lg uppercase tracking-[0.2em] hover:bg-gold hover:text-black transition-all shadow-xl">
+                        Submit Petition
                     </button>
                 </form>
             </div>
+
+            <footer class="text-center opacity-30 text-[8px] py-20 tracking-[0.4em] uppercase border-t border-white/5">
+                © Klietenlohnde Official Government Siete
+            </footer>
         </div>
     </div>
 
@@ -164,24 +194,42 @@
     <div id="admin-modal">
         <div class="w-full max-w-5xl p-6">
             <div id="auth-gate" class="max-w-md mx-auto text-center">
-                <h2 class="text-2xl mb-6 national-font">Throne Room</h2>
-                <input type="password" id="admin-pass" class="w-full bg-white/10 border border-white/20 p-4 rounded mb-4 text-center" placeholder="Royal Cipher">
-                <button onclick="verifyPass()" class="w-full py-3 bg-white text-black font-bold rounded">Enter</button>
-                <button onclick="closeAdmin()" class="w-full mt-4 text-gray-500 text-sm underline">Back</button>
-            </div>
-            <div id="admin-content" class="hidden">
-                <div class="flex justify-between items-center mb-8">
-                    <h2 class="text-2xl national-font">Royal Servers</h2>
-                    <button onclick="closeAdmin()" class="text-xs border border-white/20 px-4 py-2 rounded">Exit</button>
-                </div>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-xs uppercase tracking-widest text-gold mb-4">Pending Applications</h3>
-                        <div id="pending-list" class="space-y-4 max-h-[60vh] overflow-y-auto"></div>
+                <div class="mb-8 flex justify-center">
+                    <div class="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center border border-gold/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f1b000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3L15.5 7.5z"></path></svg>
                     </div>
+                </div>
+                <h2 class="text-xl mb-2 national-font tracking-widest">THRONE ROOM</h2>
+                <p class="text-[9px] text-gray-500 mb-8 tracking-widest uppercase">Personnel Authorized Only</p>
+                
+                <input type="password" id="admin-pass" class="w-full p-4 rounded-lg mb-4 text-center tracking-[0.5em]" placeholder="••••••••">
+                <button onclick="verifyPass()" class="w-full py-4 bg-gold text-black font-bold rounded-lg uppercase tracking-widest">Verify Access</button>
+                <button onclick="closeAdmin()" class="w-full mt-6 text-gray-500 text-[10px] uppercase tracking-widest hover:text-white transition">Return to Main</button>
+            </div>
+
+            <div id="admin-content" class="hidden">
+                <div class="flex justify-between items-end mb-10 border-b border-white/10 pb-6">
                     <div>
-                        <h3 class="text-xs uppercase tracking-widest text-green-500 mb-4">Official Registry</h3>
-                        <div id="accepted-list" class="space-y-2 max-h-[60vh] overflow-y-auto"></div>
+                        <h2 class="text-2xl national-font tracking-widest">ROYAL REGISTRY</h2>
+                        <p class="text-[9px] text-gray-500 uppercase tracking-widest mt-1">Database Management System</p>
+                    </div>
+                    <button onclick="closeAdmin()" class="text-[10px] border border-white/20 px-6 py-2 rounded-full hover:bg-white hover:text-black transition uppercase font-bold">Logout</button>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-[10px] uppercase tracking-widest text-gold font-bold">Petitions for Review</h3>
+                            <span id="pending-badge" class="bg-gold/20 text-gold text-[9px] px-2 py-0.5 rounded-full">0</span>
+                        </div>
+                        <div id="pending-list" class="space-y-4 max-h-[55vh] overflow-y-auto pr-4 scrollbar-thin"></div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-[10px] uppercase tracking-widest text-green-500 font-bold">Registered Citizens</h3>
+                            <span id="citizen-badge" class="bg-green-500/20 text-green-500 text-[9px] px-2 py-0.5 rounded-full">0</span>
+                        </div>
+                        <div id="accepted-list" class="space-y-3 max-h-[55vh] overflow-y-auto pr-4 scrollbar-thin"></div>
                     </div>
                 </div>
             </div>
@@ -191,24 +239,23 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot, addDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         const firebaseConfig = JSON.parse(__firebase_config);
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'klietenlohnde-v2';
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'klietenlohnde-v3';
 
         const PUBLIC_COL = collection(db, 'artifacts', appId, 'public', 'data', 'citizens');
         const PENDING_COL = collection(db, 'artifacts', appId, 'public', 'data', 'pending');
 
         let user = null;
+        let localPending = [];
+        let localCitizens = [];
 
         async function boot() {
-            setTimeout(() => {
-                const loader = document.getElementById('loading');
-                if(loader) { loader.style.opacity = '0'; setTimeout(() => loader.style.display = 'none', 500); }
-            }, 1000);
+            setTimeout(revealSite, 2500);
 
             try {
                 if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
@@ -216,78 +263,114 @@
                 } else {
                     await signInAnonymously(auth);
                 }
-            } catch (e) { console.error(e); }
+            } catch (e) {
+                console.error("Database connection failed, using offline mode.", e);
+                revealSite();
+            }
+        }
+
+        function revealSite() {
+            const loader = document.getElementById('loading');
+            if(loader) { 
+                loader.style.opacity = '0'; 
+                setTimeout(() => loader.style.display = 'none', 500); 
+            }
         }
 
         onAuthStateChanged(auth, (u) => {
             user = u;
             if (user) {
                 onSnapshot(PUBLIC_COL, (snap) => {
-                    const list = snap.docs.map(d => ({id: d.id, ...d.data()}));
-                    document.getElementById('citizen-count').innerText = list.length;
-                    document.getElementById('accepted-list').innerHTML = list.map(d => `
-                        <div class="p-3 bg-white/5 border border-white/10 rounded flex justify-between items-center">
-                            <span class="text-sm font-bold">${d.name}</span>
-                            <button onclick="window.removeCitizen('${d.id}')" class="text-[10px] text-red-500 uppercase font-bold tracking-widest border border-red-500/20 px-2 py-1 rounded hover:bg-red-500/10">Revoke</button>
-                        </div>
-                    `).reverse().join('');
-                });
+                    localCitizens = snap.docs.map(d => ({id: d.id, ...d.data()}));
+                    updateUI();
+                }, (err) => console.log("Registry Error:", err));
 
                 onSnapshot(PENDING_COL, (snap) => {
-                    const list = snap.docs.map(d => ({id: d.id, ...d.data()}));
-                    document.getElementById('pending-list').innerHTML = list.length ? list.map(d => `
-                        <div class="glass-card !p-4 border-white/20">
-                            <p class="font-bold text-white mb-1">${d.fullName}</p>
-                            <p class="text-[10px] text-gray-500 italic mb-3">"${d.intent}"</p>
-                            <div class="flex gap-2">
-                                <button onclick="window.handleRequest('${d.id}', true)" class="flex-1 bg-green-700 text-[10px] py-1.5 rounded font-bold uppercase">Accept</button>
-                                <button onclick="window.handleRequest('${d.id}', false)" class="flex-1 bg-red-900 text-[10px] py-1.5 rounded font-bold uppercase">Deny</button>
-                            </div>
-                        </div>
-                    `).join('') : '<p class="text-gray-600 text-xs text-center py-8">No pending applications</p>';
-                });
+                    localPending = snap.docs.map(d => ({id: d.id, ...d.data()}));
+                    updateAdminUI();
+                }, (err) => console.log("Pending Error:", err));
+                
+                revealSite();
             }
         });
 
+        function updateUI() {
+            const countEl = document.getElementById('citizen-count');
+            const recentEl = document.getElementById('recent-citizens');
+            
+            countEl.innerText = localCitizens.length;
+            
+            if (localCitizens.length > 0) {
+                const latest = [...localCitizens].sort((a,b) => b.timestamp - a.timestamp).slice(0, 4);
+                recentEl.innerHTML = latest.map(c => `
+                    <div class="px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-[11px] tracking-wider text-gray-300">
+                        ${c.name}
+                    </div>
+                `).join('');
+            } else {
+                recentEl.innerHTML = `<span class="text-gray-600 text-xs italic">Registry Empty</span>`;
+            }
+            updateAdminUI();
+        }
+
+        function updateAdminUI() {
+            const pList = document.getElementById('pending-list');
+            const aList = document.getElementById('accepted-list');
+            const pBadge = document.getElementById('pending-badge');
+            const aBadge = document.getElementById('citizen-badge');
+
+            if(!pList) return;
+
+            pBadge.innerText = localPending.length;
+            aBadge.innerText = localCitizens.length;
+
+            pList.innerHTML = localPending.length ? localPending.map(d => `
+                <div class="glass-card !p-5 border-white/10 hover:border-gold/30 transition">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <p class="font-bold text-white text-base">${d.fullName}</p>
+                            <p class="text-[10px] text-gold uppercase tracking-widest">${d.email}</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 p-3 rounded-lg text-xs text-gray-400 italic mb-4">"${d.intent}"</div>
+                    <div class="flex gap-3">
+                        <button onclick="window.handleRequest('${d.id}', true)" class="flex-1 bg-green-600 hover:bg-green-500 text-white text-[10px] font-bold py-2 rounded uppercase tracking-widest transition">Approve</button>
+                        <button onclick="window.handleRequest('${d.id}', false)" class="flex-1 bg-red-900 hover:bg-red-800 text-white text-[10px] font-bold py-2 rounded uppercase tracking-widest transition">Deny</button>
+                    </div>
+                </div>
+            `).join('') : '<div class="text-center py-10 text-gray-600 text-sm">No pending petitions</div>';
+
+            aList.innerHTML = localCitizens.map(d => `
+                <div class="flex items-center justify-between p-4 bg-white/5 border border-white/5 rounded-xl">
+                    <span class="text-sm font-bold tracking-wide">${d.name}</span>
+                    <button onclick="window.removeCitizen('${d.id}')" class="text-[9px] text-red-500/50 hover:text-red-500 font-bold uppercase tracking-tighter transition">Revoke Access</button>
+                </div>
+            `).reverse().join('');
+        }
+
         window.handleRequest = async (id, approve) => {
             if(!user) return;
-            const pendingRef = doc(db, 'artifacts', appId, 'public', 'data', 'pending', id);
-            
-            if (approve) {
-                const snap = (await onSnapshot(pendingRef, (s) => {})).docs; // Dummy for type safety
-                // We actually need to fetch it or find it in local state
-                const reqData = snap?.data(); 
-                // Using current state instead
-                const d = (await getDoc(pendingRef)).data();
-                if(d) {
-                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'citizens', id), {
-                        name: d.fullName,
-                        email: d.email,
-                        timestamp: Date.now()
-                    });
+            try {
+                if (approve) {
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'pending', id);
+                    const snap = await getDoc(docRef);
+                    if (snap.exists()) {
+                        const data = snap.data();
+                        await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'citizens', id), {
+                            name: data.fullName,
+                            email: data.email,
+                            timestamp: Date.now()
+                        });
+                    }
                 }
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'pending', id));
+            } catch (err) {
+                console.error(err);
             }
-            await deleteDoc(pendingRef);
-        };
-
-        // Simplified handleRequest to work with ID directly
-        window.handleRequest = async (id, approve) => {
-            // Find in current pending list
-            const req = (await (import('https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js'))).getDoc(doc(db, 'artifacts', appId, 'public', 'data', 'pending', id));
-            const snap = await req;
-            const data = snap.data();
-
-            if (approve && data) {
-                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'citizens', id), {
-                    name: data.fullName,
-                    email: data.email,
-                    timestamp: Date.now()
-                });
-            }
-            await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'pending', id));
         };
 
         window.removeCitizen = async (id) => {
+            if(!user || !confirm("Revoke this citizenship?")) return;
             await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'citizens', id));
         };
 
@@ -295,12 +378,31 @@
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
             const fd = new FormData(e.target);
+            
             btn.innerText = "Transmitting...";
             btn.disabled = true;
-            await addDoc(PENDING_COL, { fullName: fd.get('fullname'), email: fd.get('email'), intent: fd.get('intent'), timestamp: Date.now() });
-            btn.innerText = "Application Sent";
-            e.target.reset();
-            setTimeout(() => { btn.innerText = "Apply for Citizenship"; btn.disabled = false; }, 3000);
+            
+            try {
+                await addDoc(PENDING_COL, { 
+                    fullName: fd.get('fullname'), 
+                    email: fd.get('email'), 
+                    intent: fd.get('intent'), 
+                    timestamp: Date.now() 
+                });
+                btn.innerText = "Petition Received";
+                btn.classList.replace('bg-white', 'bg-green-600');
+                btn.classList.add('text-white');
+                e.target.reset();
+            } catch (err) {
+                btn.innerText = "Retry Petition";
+            } finally {
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.innerText = "Submit Petition";
+                    btn.classList.remove('bg-green-600', 'text-white');
+                    btn.classList.add('bg-white', 'text-black');
+                }, 4000);
+            }
         };
 
         window.openAdmin = () => document.getElementById('admin-modal').style.display = 'flex';
@@ -313,7 +415,10 @@
             if(document.getElementById('admin-pass').value === 'Goldenfox3791') {
                 document.getElementById('auth-gate').classList.add('hidden');
                 document.getElementById('admin-content').classList.remove('hidden');
-            } else { alert("Incorrect."); }
+            } else { 
+                alert("Invalid Royal Cipher."); 
+                document.getElementById('admin-pass').value = '';
+            }
         };
 
         boot();
